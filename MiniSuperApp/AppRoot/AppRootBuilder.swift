@@ -29,7 +29,8 @@ final class AppRootBuilder: Builder<AppRootDependency>, AppRootBuildable {
     let tabBar = RootTabBarController()
     
     let interactor = AppRootInteractor(presenter: tabBar)
-    
+
+      // 3개의 자식 Riblet Builder들을 생성
     let appHome = AppHomeBuilder(dependency: component)
     let financeHome = FinanceHomeBuilder(dependency: component)
     let profileHome = ProfileHomeBuilder(dependency: component)

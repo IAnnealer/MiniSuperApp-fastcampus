@@ -36,7 +36,8 @@ final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControll
     super.init(interactor: interactor, viewController: viewController)
     interactor.router = self
   }
-  
+
+  // 자식 Builder의 build 메소드를 통해 router를 전달받아 Riblet을 attach한다.
   func attachTabs() {
     let appHomeRouting = appHome.build(withListener: interactor)
     let financeHomeRouting = financeHome.build(withListener: interactor)

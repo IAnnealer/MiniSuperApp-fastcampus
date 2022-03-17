@@ -5,8 +5,9 @@ protocol FinanceHomeDependency: Dependency {
   // created by this RIB.
 }
 
-final class FinanceHomeComponent: Component<FinanceHomeDependency> {
-  
+final class FinanceHomeComponent: Component<FinanceHomeDependency>,
+                                  SuperPayDashboardDependency {
+
   // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
 
@@ -17,16 +18,23 @@ protocol FinanceHomeBuildable: Buildable {
 }
 
 final class FinanceHomeBuilder: Builder<FinanceHomeDependency>, FinanceHomeBuildable {
-  
+
   override init(dependency: FinanceHomeDependency) {
     super.init(dependency: dependency)
   }
-  
+
   func build(withListener listener: FinanceHomeListener) -> FinanceHomeRouting {
-    let _ = FinanceHomeComponent(dependency: dependency)
+    let component = FinanceHomeComponent(dependency: dependency)
     let viewController = FinanceHomeViewController()
     let interactor = FinanceHomeInteractor(presenter: viewController)
     interactor.listener = listener
-    return FinanceHomeRouter(interactor: interactor, viewController: viewController)
+
+    let superPayDashboardBuilder = SuperPayDashboardBuilder(dependency: component)
+
+    return FinanceHomeRouter(
+      interactor: interactor,
+      viewController: viewController,
+      superPayDashboardBuildable: superPayDashboardBuilder
+    )
   }
 }
