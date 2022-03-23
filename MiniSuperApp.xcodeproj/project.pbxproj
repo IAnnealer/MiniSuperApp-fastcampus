@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		862C19F527EB7C6A00A1DF3B /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862C19F427EB7C6A00A1DF3B /* Formatter.swift */; };
+		862C19FB27EB7ECC00A1DF3B /* CardOnFileDashboardRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862C19F727EB7ECC00A1DF3B /* CardOnFileDashboardRouter.swift */; };
+		862C19FC27EB7ECC00A1DF3B /* CardOnFileDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862C19F827EB7ECC00A1DF3B /* CardOnFileDashboardViewController.swift */; };
+		862C19FD27EB7ECC00A1DF3B /* CardOnFileDashboardBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862C19F927EB7ECC00A1DF3B /* CardOnFileDashboardBuilder.swift */; };
+		862C19FE27EB7ECC00A1DF3B /* CardOnFileDashboardInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862C19FA27EB7ECC00A1DF3B /* CardOnFileDashboardInteractor.swift */; };
 		8659B69E27E325450066FE58 /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = 8659B69D27E325450066FE58 /* CombineExt */; };
 		8659B6A027E325550066FE58 /* Combine+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8659B69F27E325550066FE58 /* Combine+Utils.swift */; };
 		867FD50627CCDBE1007BA3B9 /* SuperPayDashboardRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867FD50227CCDBE1007BA3B9 /* SuperPayDashboardRouter.swift */; };
@@ -53,6 +58,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		862C19F427EB7C6A00A1DF3B /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
+		862C19F727EB7ECC00A1DF3B /* CardOnFileDashboardRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOnFileDashboardRouter.swift; sourceTree = "<group>"; };
+		862C19F827EB7ECC00A1DF3B /* CardOnFileDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOnFileDashboardViewController.swift; sourceTree = "<group>"; };
+		862C19F927EB7ECC00A1DF3B /* CardOnFileDashboardBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOnFileDashboardBuilder.swift; sourceTree = "<group>"; };
+		862C19FA27EB7ECC00A1DF3B /* CardOnFileDashboardInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardOnFileDashboardInteractor.swift; sourceTree = "<group>"; };
 		8659B69F27E325550066FE58 /* Combine+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Utils.swift"; sourceTree = "<group>"; };
 		867FD50227CCDBE1007BA3B9 /* SuperPayDashboardRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperPayDashboardRouter.swift; sourceTree = "<group>"; };
 		867FD50327CCDBE1007BA3B9 /* SuperPayDashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperPayDashboardViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +121,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		862C19F627EB7EBA00A1DF3B /* CardOnFileDashboard */ = {
+			isa = PBXGroup;
+			children = (
+				862C19F727EB7ECC00A1DF3B /* CardOnFileDashboardRouter.swift */,
+				862C19F827EB7ECC00A1DF3B /* CardOnFileDashboardViewController.swift */,
+				862C19F927EB7ECC00A1DF3B /* CardOnFileDashboardBuilder.swift */,
+				862C19FA27EB7ECC00A1DF3B /* CardOnFileDashboardInteractor.swift */,
+			);
+			path = CardOnFileDashboard;
+			sourceTree = "<group>";
+		};
 		867FD50127CCDBBD007BA3B9 /* SuperDashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +139,7 @@
 				867FD50327CCDBE1007BA3B9 /* SuperPayDashboardViewController.swift */,
 				867FD50427CCDBE1007BA3B9 /* SuperPayDashboardBuilder.swift */,
 				867FD50527CCDBE1007BA3B9 /* SuperPayDashboardInteractor.swift */,
+				862C19F427EB7C6A00A1DF3B /* Formatter.swift */,
 			);
 			path = SuperDashboard;
 			sourceTree = "<group>";
@@ -138,6 +160,7 @@
 		F57F6ADA26DB49EA00C0117D /* FinanceHome */ = {
 			isa = PBXGroup;
 			children = (
+				862C19F627EB7EBA00A1DF3B /* CardOnFileDashboard */,
 				867FD50127CCDBBD007BA3B9 /* SuperDashboard */,
 				F57F6AE426DB4A2700C0117D /* FinanceHomeRouter.swift */,
 				F57F6AE526DB4A2700C0117D /* FinanceHomeViewController.swift */,
@@ -341,6 +364,7 @@
 				F5EAA22E270B3A4500EF2B70 /* SuperPayView.swift in Sources */,
 				F5EAA220270B39DC00EF2B70 /* PushModalPresentationController.swift in Sources */,
 				F57F6AF126DB4A2D00C0117D /* ProfileHomeViewController.swift in Sources */,
+				862C19FC27EB7ECC00A1DF3B /* CardOnFileDashboardViewController.swift in Sources */,
 				F57F6AF326DB4A2D00C0117D /* ProfileHomeInteractor.swift in Sources */,
 				F5829F7626DB34AA00BFA8CD /* AppRootBuilder.swift in Sources */,
 				F5EAA230270B3A7100EF2B70 /* RIBs+Utils.swift in Sources */,
@@ -353,11 +377,14 @@
 				F5EAA22C270B3A4500EF2B70 /* TransportHomeInteractor.swift in Sources */,
 				F5829F7726DB34AA00BFA8CD /* AppRootInteractor.swift in Sources */,
 				F5EAA22D270B3A4500EF2B70 /* RideTypeView.swift in Sources */,
+				862C19FB27EB7ECC00A1DF3B /* CardOnFileDashboardRouter.swift in Sources */,
 				867FD50927CCDBE1007BA3B9 /* SuperPayDashboardInteractor.swift in Sources */,
+				862C19F527EB7C6A00A1DF3B /* Formatter.swift in Sources */,
 				F5EAA219270B395900EF2B70 /* HomeWidgetView.swift in Sources */,
 				F57F6AFE26DB4CD700C0117D /* RootTabBarController.swift in Sources */,
 				867FD50827CCDBE1007BA3B9 /* SuperPayDashboardBuilder.swift in Sources */,
 				F57F6AEB26DB4A2700C0117D /* FinanceHomeInteractor.swift in Sources */,
+				862C19FE27EB7ECC00A1DF3B /* CardOnFileDashboardInteractor.swift in Sources */,
 				F5EAA21B270B395900EF2B70 /* AppHomeInteractor.swift in Sources */,
 				8659B6A027E325550066FE58 /* Combine+Utils.swift in Sources */,
 				F57F6AE826DB4A2700C0117D /* FinanceHomeRouter.swift in Sources */,
@@ -371,6 +398,7 @@
 				867FD50727CCDBE1007BA3B9 /* SuperPayDashboardViewController.swift in Sources */,
 				F57EBE562738468700FE9319 /* UITableView+Utils.swift in Sources */,
 				F57EBE552738468700FE9319 /* Array+Utils.swift in Sources */,
+				862C19FD27EB7ECC00A1DF3B /* CardOnFileDashboardBuilder.swift in Sources */,
 				F5829F7426DB34AA00BFA8CD /* AppRootRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

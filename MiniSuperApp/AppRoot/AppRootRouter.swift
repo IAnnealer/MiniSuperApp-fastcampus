@@ -42,11 +42,12 @@ final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControll
     let appHomeRouting = appHome.build(withListener: interactor)
     let financeHomeRouting = financeHome.build(withListener: interactor)
     let profileHomeRouting = profileHome.build(withListener: interactor)
-    
+
+    // attach 되면서 각 Riblet interactor 내부에 didBecomeActive가 실행된다.
     attachChild(appHomeRouting)
     attachChild(financeHomeRouting)
     attachChild(profileHomeRouting)
-    
+
     let viewControllers = [
       NavigationControllerable(root: appHomeRouting.viewControllable),
       NavigationControllerable(root: financeHomeRouting.viewControllable),

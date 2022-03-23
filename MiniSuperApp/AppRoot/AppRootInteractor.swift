@@ -25,7 +25,8 @@ final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRoo
     super.init(presenter: presenter)
     presenter.listener = self
   }
-  
+
+  // 부모에게 attach 되었을떄 호춛되는 함수
   override func didBecomeActive() {
     super.didBecomeActive()
     

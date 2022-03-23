@@ -14,8 +14,9 @@ protocol SuperPayDashboardPresentableListener: AnyObject {
   // interactor class.
 }
 
-final class SuperPayDashboardViewController: UIViewController, SuperPayDashboardPresentable, SuperPayDashboardViewControllable {
-
+final class SuperPayDashboardViewController: UIViewController,
+                                             SuperPayDashboardPresentable,
+                                             SuperPayDashboardViewControllable {
   weak var listener: SuperPayDashboardPresentableListener?
 
   private let headerStackView: UIStackView = {
@@ -96,7 +97,6 @@ final class SuperPayDashboardViewController: UIViewController, SuperPayDashboard
     view.addSubview(headerStackView)
     view.addSubview(cardView)
 
-
     headerStackView.addArrangedSubview(titleLabel)
     headerStackView.addArrangedSubview(topupButton)
 
@@ -107,7 +107,7 @@ final class SuperPayDashboardViewController: UIViewController, SuperPayDashboard
     NSLayoutConstraint.activate([
       headerStackView.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
       headerStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-      headerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20),
+      headerStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
 
       cardView.topAnchor.constraint(equalTo: headerStackView.bottomAnchor, constant: 10),
       cardView.heightAnchor.constraint(equalToConstant: 180),
@@ -123,5 +123,9 @@ final class SuperPayDashboardViewController: UIViewController, SuperPayDashboard
   @objc
   private func topupButtonDidTap() {
 
+  }
+
+  func updateBalance(_ balance: String) {
+    balanceAmountLabel.text = balance
   }
 }

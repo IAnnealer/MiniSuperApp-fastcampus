@@ -6,15 +6,21 @@
 //
 
 import ModernRIBs
+import Foundation
 
+/// SupearPayDashboard Riblet이 동작하기 위해 필요한 객체들
 protocol SuperPayDashboardDependency: Dependency {
   var balance: ReadOnlyCurrentValuePublisher<Double> { get }
 }
 
+// Component는 본인과 자식 RIblet이 필요한 객체들을 담고있는 바구니.
+// SuperPayDashboardInteractor의 depedency로 전달된다.
+// 따라서 Interactor dependency를 conform한다.
 final class SuperPayDashboardComponent: Component<SuperPayDashboardDependency>,
                                           SuperPayDashboardInteractorDependency {
+  // 부모로부터 받아와서 전달만 해준다.
   var balance: ReadOnlyCurrentValuePublisher<Double> { dependency.balance }
-  // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+  var balanceFormatter: NumberFormatter { Formatter.balanceFormatter }
 }
 
 // MARK: - Builder

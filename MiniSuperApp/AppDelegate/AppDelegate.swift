@@ -14,7 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let window = UIWindow(frame: UIScreen.main.bounds)
     self.window = window
-    
+
+    // AppRootBuilder를 만들어서 build 후 launch.
     let result = AppRootBuilder(dependency: AppComponent()).build()
     self.launchRouter = result.launchRouter
     self.urlHandler = result.urlHandler

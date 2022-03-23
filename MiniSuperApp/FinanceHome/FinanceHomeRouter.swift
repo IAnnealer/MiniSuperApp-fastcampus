@@ -10,8 +10,11 @@ protocol FinanceHomeViewControllable: ViewControllable {
   func addDashboard(_ view: ViewControllable)
 }
 
-final class FinanceHomeRouter: ViewableRouter<FinanceHomeInteractable, FinanceHomeViewControllable>, FinanceHomeRouting {
+final class FinanceHomeRouter: ViewableRouter<FinanceHomeInteractable,
+                                FinanceHomeViewControllable>,
+                                FinanceHomeRouting {
 
+  // 자식 Riblet을 생성하기 위한 Builder를 주입받는다.
   private let superPayDashboardBuildable: SuperPayDashboardBuildable
   private var superPayRouting: Routing?
 
@@ -26,6 +29,8 @@ final class FinanceHomeRouter: ViewableRouter<FinanceHomeInteractable, FinanceHo
     interactor.router = self
   }
 
+  // Interactor - didBecomeActive에서 호출.
+  // 자식 Riblet 붙이기.
   func attachSuperPayDashboard() {
     if superPayRouting != nil {
       return
