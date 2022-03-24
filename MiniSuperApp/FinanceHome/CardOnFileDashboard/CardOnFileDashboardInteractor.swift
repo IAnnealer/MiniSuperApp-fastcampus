@@ -6,39 +6,60 @@
 //
 
 import ModernRIBs
+import Combine
 
 protocol CardOnFileDashboardRouting: ViewableRouting {
-    // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+  // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
 }
 
 protocol CardOnFileDashboardPresentable: Presentable {
-    var listener: CardOnFileDashboardPresentableListener? { get set }
-    // TODO: Declare methods the interactor can invoke the presenter to present data.
+  var listener: CardOnFileDashboardPresentableListener? { get set }
+
+  func update(with viewModels: [PaymentMethodViewModel])
 }
 
 protocol CardOnFileDashboardListener: AnyObject {
-    // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+  // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+}
+
+protocol CardOnFileInteractorDependency {
+  var cardOnFileRepository: CardOnFileRepository { get }
 }
 
 final class CardOnFileDashboardInteractor: PresentableInteractor<CardOnFileDashboardPresentable>, CardOnFileDashboardInteractable, CardOnFileDashboardPresentableListener {
 
-    weak var router: CardOnFileDashboardRouting?
-    weak var listener: CardOnFileDashboardListener?
+  weak var router: CardOnFileDashboardRouting?
+  weak var listener: CardOnFileDashboardListener?
 
-    // TODO: Add additional dependencies to constructor. Do not perform any logic
-    // in constructor.
-    override init(presenter: CardOnFileDashboardPresentable) {
-        super.init(presenter: presenter)
-        presenter.listener = self
-    }
+  private let dependency: CardOnFileInteractorDependency
+  private var cancellables: Set<AnyCancellable>
 
-    override func didBecomeActive() {
-        super.didBecomeActive()
-        // TODO: Implement business logic here.
-    }
+  init(
+    presenter: CardOnFileDashboardPresentable,
+    dependency: CardOnFileInteractorDependency
+  ) {
+    self.dependency = dependency
+    self.cancellables = .init()
+    super.init(presenter: presenter)
+    presenter.listener = self
+  }
 
-    override func willResignActive() {
-        super.willResignActive()
-        // TODO: Pause any business logic.
-    }
+  override func didBecomeActive() {
+    super.didBecomeActive()
+    // TODO: Implement business logic here.
+
+    dependency.cardOnFileRepository.cardOnFile
+      .sink { methods in
+        let viewModels = methods.prefix(5).map { PaymentMethodViewModel($0) }
+        self.presenter.update(with: viewModels)
+      }.store(in: &cancellables)
+  }
+
+  override func willResignActive() {
+    super.willResignActive()
+    // TODO: Pause any business logic.
+
+    cancellables.forEach { $0.cancel() }
+    cancellables.removeAll()
+  }
 }

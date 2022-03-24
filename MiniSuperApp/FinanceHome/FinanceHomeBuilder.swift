@@ -9,7 +9,12 @@ protocol FinanceHomeDependency: Dependency {
 // 이 바구니는 자식 Riblet이 필요한 객체들도 함께 담는다.
 // 따라서, 자식들의 Dependency도 함꼐 conform 한다.
 final class FinanceHomeComponent: Component<FinanceHomeDependency>,
-                                  SuperPayDashboardDependency {
+                                  SuperPayDashboardDependency,
+                                  CardOnFileDashboardDependency {
+
+  // 자식에게 repository 전달
+  let cardOnFileRepository: CardOnFileRepository
+
   // 자식에게 readOnly 타입의 Stream을 전달
   var balance: ReadOnlyCurrentValuePublisher<Double> { balancePublisher }
 
@@ -18,9 +23,11 @@ final class FinanceHomeComponent: Component<FinanceHomeDependency>,
 
   init(
     dependency: FinanceHomeDependency,
-    balance: CurrentValuePublisher<Double>
+    balance: CurrentValuePublisher<Double>,
+    cardOnFileRepository: CardOnFileRepository
   ) {
     self.balancePublisher = balance
+    self.cardOnFileRepository = cardOnFileRepository
     super.init(dependency: dependency)
   }
 }
@@ -39,9 +46,11 @@ final class FinanceHomeBuilder: Builder<FinanceHomeDependency>, FinanceHomeBuild
 
   func build(withListener listener: FinanceHomeListener) -> FinanceHomeRouting {
     let balancePublisher = CurrentValuePublisher<Double>(10000)
+
     let component = FinanceHomeComponent(
       dependency: dependency,
-      balance: balancePublisher
+      balance: balancePublisher,
+      cardOnFileRepository: CardOnFileRepositoryImp()
     )
     let viewController = FinanceHomeViewController()
     let interactor = FinanceHomeInteractor(presenter: viewController)
@@ -49,11 +58,13 @@ final class FinanceHomeBuilder: Builder<FinanceHomeDependency>, FinanceHomeBuild
 
     // Finance Riblet의 자식 Riblet으로 SuperPayDashboard Riblet을 붙이기 위한 준비.
     let superPayDashboardBuilder = SuperPayDashboardBuilder(dependency: component)
+    let cardOnFileDashboardBuilder = CardOnFileDashboardBuilder(dependency: component)
 
     return FinanceHomeRouter(
       interactor: interactor,
       viewController: viewController,
-      superPayDashboardBuildable: superPayDashboardBuilder
+      superPayDashboardBuildable: superPayDashboardBuilder,
+      cardOnFileDashboardBuildable: cardOnFileDashboardBuilder
     )
   }
 }
